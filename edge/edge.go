@@ -104,6 +104,7 @@ func (manager *Manager) Start() error {
 		manager.agentOptions.EdgeID,
 		manager.agentOptions.EdgeAsyncMode,
 		agentPlatform,
+		manager.agentOptions.UpdateID,
 		client.BuildHTTPClient(10, manager.agentOptions),
 	)
 

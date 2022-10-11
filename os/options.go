@@ -32,6 +32,7 @@ const (
 	EnvKeySSLKey                = "MTLS_SSL_KEY"
 	EnvKeySSLCACert             = "MTLS_SSL_CA"
 	EnvKeyCertRetryInterval     = "MTLS_CERT_RETRY_INTERVAL"
+	EnvKeyUpdateID              = "UPDATE_ID"
 )
 
 type EnvOptionParser struct{}
@@ -52,6 +53,7 @@ var (
 	fSharedSecret          = kingpin.Flag("secret", EnvKeyAgentSecret+" shared secret used in the signature verification process").Envar(EnvKeyAgentSecret).String()
 	fLogLevel              = kingpin.Flag("log-level", EnvKeyLogLevel+" defines the log output verbosity (default to INFO)").Envar(EnvKeyLogLevel).Default(agent.DefaultLogLevel).Enum("ERROR", "WARN", "INFO", "DEBUG")
 	fHealthCheck           = kingpin.Flag("health-check", "run the agent in healthcheck mode and exit after running preflight checks").Envar(EnvKeyHealthCheck).Default("false").Bool()
+	fUpdateID              = kingpin.Flag("update-id", "the edge update identifier that started this agent").Envar(EnvKeyUpdateID).Int()
 
 	// Edge mode
 	fEdgeMode              = kingpin.Flag("edge", EnvKeyEdge+" enable Edge mode. Disabled by default, set to 1 or true to enable it").Envar(EnvKeyEdge).Bool()
@@ -98,6 +100,7 @@ func (parser *EnvOptionParser) Options() (*agent.Options, error) {
 		SSLCert:               *fSSLCert,
 		SSLKey:                *fSSLKey,
 		SSLCACert:             *fSSLCACert,
+		UpdateID:              *fUpdateID,
 		CertRetryInterval:     *fCertRetryInterval,
 	}, nil
 }

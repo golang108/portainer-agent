@@ -93,6 +93,7 @@ type (
 		SSLCert               string
 		SSLKey                string
 		SSLCACert             string
+		UpdateID              int
 		CertRetryInterval     time.Duration
 	}
 
@@ -258,6 +259,8 @@ const (
 	HTTPPublicKeyHeaderName = "X-PortainerAgent-PublicKey"
 	// HTTPResponseAgentTimeZone is the name of the header containing the timezone
 	HTTPResponseAgentTimeZone = "X-PortainerAgent-TimeZone"
+	// HTTPResponseUpdateIDHeaderName is the name of the header that will have the update ID that started this container
+	HTTPResponseUpdateIDHeaderName = "X-PortainerAgent-Update-ID"
 	// HTTPResponseAgentHeaderName is the name of the header that is automatically added
 	// to each agent response.
 	HTTPResponseAgentHeaderName = "Portainer-Agent"
